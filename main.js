@@ -48,7 +48,7 @@ camera.rotation.y = 45/180*Math.PI;
     let loader = new GLTFLoader();
 
     let obj;
-    loader.load("SaltVinegar3d.glb", function(gltf){
+    loader.load("BBQ.glb", function(gltf){
         obj = gltf.scene;
         var box = new THREE.Box3().setFromObject( obj );
 	 var center = new THREE.Vector3();
@@ -56,7 +56,7 @@ camera.rotation.y = 45/180*Math.PI;
 	 obj.position.sub( center );
         
         scene.add(gltf.scene);
-            obj.scale.set(18,18,18);
+           // obj.scale.set(18,18,18);
     });
     // loader.load("scene.gltf", function(gltf){
     //     obj = gltf.scene;
