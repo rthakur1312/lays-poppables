@@ -25,12 +25,12 @@ const div = document.getElementById('product-img-bg');
 camera = new THREE.PerspectiveCamera(75, 800 / 900, 1, 5000 );
 // camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
 camera.rotation.y = 45/180*Math.PI;
-camera.position.x = -10;
-camera.position.y = 100;
-camera.position.z = 1600;
-//     camera.position.x = -10;
-//     camera.position.y = 200;
-//     camera.position.z = 800;
+// camera.position.x = -10;
+// camera.position.y = 100;
+// camera.position.z = 1600;
+     camera.position.x = -10;
+     camera.position.y = 100;
+     camera.position.z = 800;
 // camera.lookAt(scene.position);
 
 
@@ -56,7 +56,7 @@ camera.position.z = 1600;
 		obj.position.sub( center );
         
         scene.add(gltf.scene);
-        //   obj.scale.set(1.2,1.2,1.2);
+           obj.scale.set(0.5,0.5,0.5);
     });
     // loader.load("scene.gltf", function(gltf){
     //     obj = gltf.scene;
