@@ -48,7 +48,7 @@ camera.rotation.y = 45/180*Math.PI;
     let loader = new GLTFLoader();
 
     let obj;
-    loader.load("cheddar3d.glb", function(gltf){
+    loader.load("SaltVinegar3d.glb", function(gltf){
         obj = gltf.scene;
         var box = new THREE.Box3().setFromObject( obj );
 	 var center = new THREE.Vector3();
