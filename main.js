@@ -48,7 +48,7 @@ camera.rotation.y = 45/180*Math.PI;
     let loader = new GLTFLoader();
 
     let obj;
-    loader.load("BBQ2.glb", function(gltf){
+    loader.load("BBQ3.glb", function(gltf){
         obj = gltf.scene;
         var box = new THREE.Box3().setFromObject( obj );
 	 var center = new THREE.Vector3();
