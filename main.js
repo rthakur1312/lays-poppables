@@ -87,7 +87,7 @@ camera.rotation.y = 45/180*Math.PI;
     controls.enableZoom = false;
 
     const transformControls = new TransformControls(camera, renderer.domElement)
-        scene.add(transformControls);
+    transformControls.setMode("rotate");
     
 
     // camera.position.set(0, 100, 800);
@@ -161,6 +161,7 @@ camera.rotation.y = 45/180*Math.PI;
 
     function animate() {
         requestAnimationFrame(animate);
+        controls.update;
         if(!isMouseDown) {
         obj.rotation.y += 0.01;
         controls.reset();
