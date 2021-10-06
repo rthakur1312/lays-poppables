@@ -6,7 +6,7 @@ import { TransformControls } from 'https://threejs.org/examples/jsm/controls/Tra
 
 
 
-let scene, camera, renderer, cube, light, mx, my, controls;
+let scene, camera, renderer, cube, light, mx, my, controls, transformControls;
 let isMouseDown = false;
 let lastPageX
     let deltaPageX
@@ -16,37 +16,38 @@ let lastPageX
 const div = document.getElementById('product-img-bg');
 
 
-
-     scene = new THREE.Scene();
-
-//  camera = new THREE.PerspectiveCamera(75, 
-//     window.innerWidth/window.innerHeight,
-//     0.1,
-//     1000
-//     );
-
-camera = new THREE.PerspectiveCamera(75, 800 / 900, 1, 5000 );
-// camera = new THREE.PerspectiveCamera(40,window.innerWidth/window.innerHeight,1,5000);
-camera.rotation.y = 45/180*Math.PI;
- camera.position.x = -10;
- camera.position.y = 100;
- camera.position.z = 1600;
-     // camera.position.x = -10;
-     // camera.position.y = 100;
-     // camera.position.z = 800;
-// camera.lookAt(scene.position);
+//renderer
+renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setSize(800,900 );
+renderer.setPixelRatio(window.devicePixelRatio);
+       
+div.appendChild(renderer.domElement);
 
 
-     renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
-      
+//scene
+    scene = new THREE.Scene();
 
-    renderer.setSize(800,900 );
-    
+
+//camera
+    camera = new THREE.PerspectiveCamera(75, 800 / 900, 1, 5000 );
+    camera.position.set(-10, 100, 1600);
+    camera.lookAt(0, 0, 0);
+
+//controls
+
+    controls = new OrbitControls( camera, renderer.domElement );
+    controls.enableZoom = false;
+    controls.enableDamping = true;
     
 
-    div.appendChild(renderer.domElement);
+    transformControls = new TransformControls(camera, renderer.domElement);
+    transformControls.setMode("rotate");
 
-    // document.body.appendChild(renderer.domElement);
+//light
+
+    light = new THREE.HemisphereLight(0XFFFFFF, 0X000000, 2);
+    scene.add(light);
+   
 
     let loader = new GLTFLoader();
 
@@ -61,126 +62,37 @@ camera.rotation.y = 45/180*Math.PI;
         scene.add(gltf.scene);
            // obj.scale.set(18,18,18);
     });
-    // loader.load("scene.gltf", function(gltf){
-    //     obj = gltf.scene;
-    //     scene.add(gltf.scene);
-    //     obj.scale.set(3.8,3.8,3.8);
-    // });
-
-    // scene.background = new THREE.Color(0xF7CE41);
-
-    light = new THREE.HemisphereLight(0XFFFFFF, 0X000000, 2);
-
-  
-
-    // const geometry = new THREE.BoxGeometry( 2, 2, 2 );
-    // // const material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
-    // const texture = new THREE.TextureLoader().load('textures/Badge_baseColor.png');
-    //  const material = new THREE.MeshBasicMaterial( {map:texture} );
-    // cube = new THREE.Mesh( geometry, material );
-    // light = new THREE.HemisphereLight(0XFFFFFF, 0X000000, 1);
-
-    
-    scene.add(light);
-
-    controls = new OrbitControls( camera, renderer.domElement );
-    controls.enableZoom = false;
-
-    const transformControls = new TransformControls(camera, renderer.domElement)
-    transformControls.setMode("rotate");
-    
-
-    // camera.position.set(0, 100, 800);
-
-
-
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', onMouseUp);
-    
-
-        function onMouseDown(){
-            isMouseDown = true;
-        }
-
-        function onMouseUp(){
-            isMouseDown = false;
-        }
-
-        
-
-        // function onTouchMove(event){
-        //     mouse.x = ( event.touches[ 0 ].clientX / window.innerWidth ) * 2 - 1;
-        //       mouse.y = - ( event.touches[ 0 ].clientY / window.innerHeight ) * 2 + 1;
-        //     raycaster.setFromCamera(mouse, camera);
-        // }
-
     
 
 
-    // mx = 0;
-    //      my = 0;
 
-    //     function saveMouse(event) {
-    //         mx = event.clientX;
-    //         my = event.clientY;
+    // window.addEventListener('mousedown', onMouseDown);
+    // window.addEventListener('mouseup', onMouseUp);
+    
+
+    //     function onMouseDown(){
+    //         isMouseDown = true;
     //     }
 
-    //     document.onmousemove = saveMouse;
-
-    // function render() {
-    //     if (resize(renderer)) {
-    //         camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    //         camera.updateProjectionMatrix();
+    //     function onMouseUp(){
+    //         isMouseDown = false;
     //     }
-    //     renderer.render(scene, camera);
-    //     requestAnimationFrame(render);
-    // }
-    
-    // function resize(renderer) {
-    //     const canvas = renderer.domElement;
-    //     const width = canvas.clientWidth;
-    //     const height = canvas.clientHeight;
-    //     const needResize = canvas.width !== width || canvas.height !== height;
-    //     if (needResize) {
-    //         renderer.setSize(width, height, false);
-    //     }
-    //     return needResize;
-    // }
-    
-    
-    // window.addEventListener( 'resize', function() {
-    //     camera.aspect = window.innerWidth / window.innerHeight;
-    //     camera.updateProjectionMatrix();
-    
-    //     renderer.setSize( window.innerWidth, window.innerHeight )
-    // })
 
-
-    controls.update();
 
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update;
-        if(!isMouseDown) {
-        obj.rotation.y += 0.01;
-        controls.reset();
+        // if(!isMouseDown) {
+        // obj.rotation.y += 0.01;
+        // controls.reset();
         // cube.rotation.y = mx/500 ;
         // cube.rotation.x = my/500;
-        }
+        // }
         
 
         renderer.render(scene, camera);
     }
-
-    // function onWindowResize() {
-    //     camera.aspect = window.innerWidth / window.innerHeight;
-    //     camera.updateProjectMatrix();
-    //     renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // }
-
-    // window.addEventListener('resize', onWindowResize, false);
 
     animate();
 
