@@ -8,6 +8,7 @@ import { TransformControls } from 'https://threejs.org/examples/jsm/controls/Tra
 
 let scene, camera, renderer, cube, light, mx, my, controls, transformControls;
 let isMouseDown = false;
+let isPointerDown = false;
 
 
 const div = document.getElementById('product-img-bg');
@@ -16,7 +17,7 @@ const div = document.getElementById('product-img-bg');
 //renderer
 renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setSize(800,900 );
-renderer.setPixelRatio(window.devicePixelRatio);
+// renderer.setPixelRatio(window.devicePixelRatio);
        
 div.appendChild(renderer.domElement);
 
@@ -27,14 +28,14 @@ div.appendChild(renderer.domElement);
 
 //camera
     camera = new THREE.PerspectiveCamera(75, 800 / 900, 1, 5000 );
-    camera.position.set(-10, 100, 1600);
+     camera.position.set(-10, 100, 1600);
     camera.lookAt(0, 0, 0);
 
 //controls
 
     controls = new OrbitControls( camera, renderer.domElement );
     controls.enableZoom = false;
-    controls.enableDamping = true;
+    // controls.enableDamping = true;
     
 
     transformControls = new TransformControls(camera, renderer.domElement);
@@ -65,40 +66,45 @@ div.appendChild(renderer.domElement);
 
     // window.addEventListener('mousedown', onMouseDown);
     // window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('pointerdown', onPointerDown);
+    window.addEventListener('pointerup', onPointerUp);
     
 
-    //     function onMouseDown(){
-    //         isMouseDown = true;
-    //     }
+        // function onMouseDown(){
+        //     isMouseDown = true;
+        // }
 
-    //     function onMouseUp(){
-    //         isMouseDown = false;
-    //     }
+        // function onMouseUp(){
+        //     isMouseDown = false;
+        // }
+
+        function onPointerDown(){
+            isPointerDown = true;
+        }
+
+        function onPointerUp(){
+            isPointerDown = false;
+        }
+
+
+   
+
+
 
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update;
+        if(!isPointerDown) {
         obj.rotation.y += 0.01;
+        controls.reset();
+        }
+        
+
         renderer.render(scene, camera);
     }
 
     animate();
-
-
-    // function animate() {
-    //     requestAnimationFrame(animate);
-    //     controls.update;
-    //     if(!isMouseDown) {
-    //     obj.rotation.y += 0.01;
-    //     controls.reset();
-    //     }
-        
-
-    //     renderer.render(scene, camera);
-    // }
-
-    // animate();
 
 
    
