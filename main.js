@@ -1,6 +1,9 @@
 import {GLTFLoader} from "./GLTFLoader.js";
 import { Loader } from "./three.module.js";
 import {OrbitControls} from "./OrbitControls.js";
+import { TransformControls } from 'https://threejs.org/examples/jsm/controls/TransformControls.js';
+
+
 
 
 let scene, camera, renderer, cube, light, mx, my, controls;
@@ -82,6 +85,9 @@ camera.position.z = 1600;
 
     controls = new OrbitControls( camera, renderer.domElement );
     controls.enableZoom = false;
+
+    transformControls = new TransformControls(camera, renderer.domElement)
+        scene.add(transformControls);
     
 
     // camera.position.set(0, 100, 800);
