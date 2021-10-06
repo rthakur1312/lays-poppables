@@ -86,8 +86,8 @@ camera.rotation.y = 45/180*Math.PI;
     controls = new OrbitControls( camera, renderer.domElement );
     controls.enableZoom = false;
 
-    transformControls = new TransformControls(camera, renderer.domElement)
-        scene.add(transformControls);
+    // transformControls = new TransformControls(camera, renderer.domElement)
+    //     scene.add(transformControls);
     
 
     // camera.position.set(0, 100, 800);
