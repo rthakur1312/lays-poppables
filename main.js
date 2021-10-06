@@ -63,33 +63,42 @@ div.appendChild(renderer.domElement);
 
 
 
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', onMouseUp);
+    // window.addEventListener('mousedown', onMouseDown);
+    // window.addEventListener('mouseup', onMouseUp);
     
 
-        function onMouseDown(){
-            isMouseDown = true;
-        }
+    //     function onMouseDown(){
+    //         isMouseDown = true;
+    //     }
 
-        function onMouseUp(){
-            isMouseDown = false;
-        }
-
+    //     function onMouseUp(){
+    //         isMouseDown = false;
+    //     }
 
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update;
-        if(!isMouseDown) {
         obj.rotation.y += 0.01;
-        controls.reset();
-        }
-        
-
         renderer.render(scene, camera);
     }
 
     animate();
+
+
+    // function animate() {
+    //     requestAnimationFrame(animate);
+    //     controls.update;
+    //     if(!isMouseDown) {
+    //     obj.rotation.y += 0.01;
+    //     controls.reset();
+    //     }
+        
+
+    //     renderer.render(scene, camera);
+    // }
+
+    // animate();
 
 
    
