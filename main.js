@@ -8,9 +8,6 @@ import { TransformControls } from 'https://threejs.org/examples/jsm/controls/Tra
 
 let scene, camera, renderer, cube, light, mx, my, controls, transformControls;
 let isMouseDown = false;
-let lastPageX
-    let deltaPageX
-    let isTouchMove = false
 
 
 const div = document.getElementById('product-img-bg');
@@ -66,29 +63,27 @@ div.appendChild(renderer.domElement);
 
 
 
-    // window.addEventListener('mousedown', onMouseDown);
-    // window.addEventListener('mouseup', onMouseUp);
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
     
 
-    //     function onMouseDown(){
-    //         isMouseDown = true;
-    //     }
+        function onMouseDown(){
+            isMouseDown = true;
+        }
 
-    //     function onMouseUp(){
-    //         isMouseDown = false;
-    //     }
+        function onMouseUp(){
+            isMouseDown = false;
+        }
 
 
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update;
-        // if(!isMouseDown) {
-        // obj.rotation.y += 0.01;
-        // controls.reset();
-        // cube.rotation.y = mx/500 ;
-        // cube.rotation.x = my/500;
-        // }
+        if(!isMouseDown) {
+        obj.rotation.y += 0.01;
+        controls.reset();
+        }
         
 
         renderer.render(scene, camera);
