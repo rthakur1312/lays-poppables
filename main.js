@@ -97,6 +97,11 @@ div.appendChild(renderer.domElement);
         controls.update;
         if(!isPointerDown) {
         obj.rotation.y += 0.01;
+        let rotationAngle = THREE.Math.radToDeg(obj.rotation.y) % 360;
+
+        if(rotationAngle > 130 && rotationAngle < 300) {
+            obj.rotation.y += 0.02;
+        }
         controls.reset();
         }
         
