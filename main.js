@@ -1,3 +1,4 @@
+
 import {GLTFLoader} from "./GLTFLoader.js";
 import { Loader } from "./three.module.js";
 import {OrbitControls} from "./OrbitControls.js";
@@ -6,7 +7,7 @@ import { TransformControls } from 'https://threejs.org/examples/jsm/controls/Tra
 
 
 
-let scene, camera, renderer, cube, light, mx, my, controls, transformControls;
+let scene, camera, renderer, cube, light, mx, my, controls, transformControls, elementClicked;
 let isMouseDown = false;
 let isPointerDown = false;
 
@@ -40,6 +41,8 @@ div.appendChild(renderer.domElement);
 
     transformControls = new TransformControls(camera, renderer.domElement);
     transformControls.setMode("rotate");
+    console.log(transformControls);
+
 
 //light
 
@@ -88,23 +91,72 @@ div.appendChild(renderer.domElement);
 
 
    
+         elementClicked = false;
+        console.log(elementClicked);
+
+        document.getElementById('product-img-bg').addEventListener('click', function () {
+            elementClicked = true;
+        })
 
 
+        
 
+
+       
+
+       
+
+
+        
 
     function animate() {
         requestAnimationFrame(animate);
         controls.update;
+
+        
         if(!isPointerDown) {
         obj.rotation.y += 0.01;
+
+        $(function() {
+            var isDragging = false;
+            $("#product-img-bg")
+            .mousedown(function() {
+                document.getElementById('clickable-ingredients').style.display = 'none';
+                document.getElementById('clickable').style.display = 'none';   
+                    
+            })
+            .mouseup(function() {
+                document.getElementById('clickable-ingredients').style.display = 'flex';
+                document.getElementById('clickable').style.display = 'flex'; 
+                 
+            });
+        });
+       
+        if(elementClicked) {
+            obj.rotation.y = 0.00;
+            document.getElementById('clickable-ingredients').style.display = 'flex';
+            document.getElementById('clickable').style.display = 'flex';
+            
+            controls.reset();
+        }
+
+        else {
+        
         let rotationAngle = THREE.Math.radToDeg(obj.rotation.y) % 360;
+
+        // console.log(rotationAngle);
 
         if(rotationAngle > 130 && rotationAngle < 300) {
             obj.rotation.y += 0.02;
+            
         }
-        controls.reset();
-        }
+
+        // if(rotationAngle > 300) {
+        //     document.getElementById('clickable').style.display = 'none';
+        // }
         
+        }
+    }
 
         renderer.render(scene, camera);
     }
