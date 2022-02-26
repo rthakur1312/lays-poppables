@@ -2,7 +2,7 @@
 import {GLTFLoader} from "./GLTFLoader.js";
 import { Loader } from "./three.module.js";
 import {OrbitControls} from "./OrbitControls.js";
-import { TransformControls } from 'https://threejs.org/examples/jsm/controls/TransformControls.js';
+//import { TransformControls } from 'https://threejs.org/examples/jsm/controls/TransformControls.js';
 
 
 
